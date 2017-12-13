@@ -1,0 +1,20 @@
+{
+  "accessToken" : "CKLTKNUYRJXHZYPFXWWXJMQ3FURN6MET",
+  "secretKey"   : "R2VBRK3JC7QOB4CL6B5VN5532UR7LZXE",
+  "version"     : "1.0.1",
+  "appName"     : "Takeda Try Me",
+  "baseURL"     : "209.160.65.49:3090",
+  "appPort"     : 3090,
+  "dbConfigs"   : {
+    "host"       : "localhost",
+    "user"       : "root",
+    "password"   : "root",
+    "database"   : "TakedaTry"
+  },
+  "emailConfig" : {
+    "username"   : "alphatest009@gmail.com",
+    "password"   : "@123Welcome",
+    "smtpServer" :"smtp.gmail.com",
+    "smtpPort"   : 465
+  }
+}

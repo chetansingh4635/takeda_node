@@ -1,0 +1,247 @@
+[
+    {
+        "name": "Brand / Details",
+        "parameters": "",
+        "type":"GET",
+        "url":"brandingDetails",
+        "contentType":"application/json",
+        "timeout":15000,
+        "header":"",
+        "data": {},
+        "200":[{
+                "primary_color": "#fff",
+                "default_color": "#fff",
+                "info_color": "#fff",
+                "danger_color": "#fff",
+                "warning_color": "#fff",
+                "font_size": "11",
+                "logo": "logoURL"
+            }],
+        "401":[{
+                "status"   : "error",
+                "message"  : "Something went wrong !!"
+        }]
+    },
+    {
+        "name": "User / Signup",
+        "parameters": [
+                        {
+                            "name":"nickName",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        },
+                        {
+                            "name":"password",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        },
+                        {
+                            "name":"emailId",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        }
+                    ],
+        "type":"POST",
+        "url":"signup",
+        "contentType":"application/json",
+        "header":"",
+        "timeout":15000,
+        "data": {
+            "nickName" : "example",
+            "password" : "example",
+            "emailId"  : "example@unknown.com"
+        },
+        "200":[{
+            "status": "success",
+            "message": "User Successfully registered with us"
+        }],
+        "401":[{
+                "error"  : "Something went wrong !!"
+        }]
+    },
+    {
+        "name": "User / Login",
+        "parameters": [
+                        {
+                            "name":"password",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        },
+                        {
+                            "name":"emailId",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        }
+                    ],
+        "type":"POST",
+        "url":"login",
+        "contentType":"application/json",
+        "header":"",
+        "timeout":15000,
+        "data": {
+            "password" : "example",
+            "emailId"  : "example@unknown.com"
+        },
+        "200":[{
+          "access-token": "Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoidmFzaW1yYW5hQG1vYmlsZXByb2dyYW1taW5nLm5ldCIsIm5pY2tOYW1lIjoidmFzaW1yYW5hIiwiZXhwIjoxNTA5NDUwNjMwLCJpYXQiOjE1MDkzNjQyMzB9.HzYluiaum0tfW3ntUF7kwlm1KiPndlercDVotSpVEGw"
+        }],
+        "401":[{
+                "error"  : "Something went wrong !!"
+        }]
+    },
+    {
+        "name": "User / refreshToken",
+        "parameters": [
+                        {
+                            "name":"access-token",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        }
+                    ],
+        "type":"POST",
+        "url":"refreshToken",
+        "contentType":"application/json",
+        "header":{
+            "x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"
+        },
+        "timeout":15000,
+        "data": {
+            "access-token" : "abc34o3diveod"
+        },
+        "200":[{
+          "access-token": "Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoidmFzaW1yYW5hQG1vYmlsZXByb2dyYW1taW5nLm5ldCIsIm5pY2tOYW1lIjoidmFzaW1yYW5hIiwiZXhwIjoxNTA5NDUwODkwLCJpYXQiOjE1MDkzNjQ0OTB9.0h_uwhwaY_5cBRaN25sX-2Ai4IMa_RZe8lg7Aa8at-w"
+        }],
+        "401":[{
+                "error"  : "Something went wrong !!"
+        }]
+    },
+    {
+        "name": "User / changePassword",
+        "parameters": [
+                        {
+                            "name":"oldPassword",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        },
+                        {
+                            "name":"newPassword",
+                            "optional":"NO",
+                            "type":"String",
+                            "default":"NONE"
+                        }
+                    ],
+        "type":"POST",
+        "url":"changePassword",
+        "contentType":"application/json",
+        "header":{
+            "x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"
+        },
+        "timeout":15000,
+        "data": {
+            "oldPassword" : "abcd",
+            "newPassword" : "abcd2"
+        },
+        "200":[{
+          "access-token": "Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoidmFzaW1yYW5hQG1vYmlsZXByb2dyYW1taW5nLm5ldCIsIm5pY2tOYW1lIjoidmFzaW1yYW5hIiwiZXhwIjoxNTA5NDUwOTg4LCJpYXQiOjE1MDkzNjQ1ODh9.dD7D1G9ydpkN7A8uIh6YlxHkG5ChxdAIhKMNGI8jlGk",
+          "status": "success",
+          "message": "Password successfully changed"
+        }],
+        "401":[{
+                "error"  : "Something went wrong !!"
+        }]
+    },
+    {
+        "name": "User / forgotPassword",
+        "parameters": [
+                        {
+                            "name"     : "emailId",
+                            "optional" : "NO",
+                            "type"     : "email",
+                            "default"  : "NONE"
+                        }
+                    ],
+        "type":"POST",
+        "url":"forgotPassword",
+        "contentType":"application/json",
+        "header":"",
+        "timeout":15000,
+        "data": {
+            "emailId" : "abcd@mobileprogramming.net"
+        },
+        "200":[{
+            "status": "success",
+            "message": "Email successfully send to the user email address"
+        }],
+        "401":[{
+          "status": "error",
+          "message": "Email address is not available"
+      }]
+    },
+    {
+        "name": "Document / List",
+        "parameters": "",
+        "type":"GET",
+        "url":"documentList",
+        "contentType":"application/json",
+        "timeout":15000,
+        "header":{
+            "x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"
+        },
+        "data": {},
+        "200":[
+            {
+                "document_id": 10,
+                "document_label": "Gastroperisis"
+            }
+        ],
+        "401":[{
+                "status"   : "error",
+                "message"  : "Something went wrong !!"
+        },
+        {
+            "status": "error",
+            "message": "No token provided"
+        }]
+    },
+    {
+        "name": "Document / Details",
+        "parameters": [
+                        {
+                            "name":"documentID",
+                            "optional":"NO",
+                            "type":"Number",
+                            "default":"NONE"
+                        }
+                    ],
+        "type":"GET",
+        "url":"{documentID}/documentList",
+        "contentType":"application/json",
+        "timeout":15000,
+        "header":{
+            "x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"
+        },
+        "data": {},
+        "200":[
+            {
+                "status": "success",
+                "documentDescription": "HTML String",
+                "simplifiedDocument": "HTML String"
+            }
+        ],
+        "401":[{
+                "status"   : "error",
+                "message"  : "Something went wrong !!"
+        },
+        {
+            "status": "error",
+            "message": "No token provided"
+        }]
+    }
+]
