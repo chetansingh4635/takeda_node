@@ -3,7 +3,7 @@
   "secretKey"   : "R2VBRK3JC7QOB4CL6B5VN5532UR7LZXE",
   "version"     : "1.0.1",
   "appName"     : "Takeda Try Me",
-  "baseURL"     : "209.160.65.49:3090",
+  "baseURL"     : "ynlhnfju7d.healthcareblocks.com:3090",
   "appPort"     : 3090,
   "dbConfigs"   : {
     "host"       : "localhost",

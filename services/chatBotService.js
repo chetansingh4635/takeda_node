@@ -8,7 +8,7 @@ var witModel   = require('../models/witModel');
 module.exports.createResponse = function createResponse(req, res, wit_res, wit_req, next) {
   if(!_.isEmpty(wit_res.entities)) {
     _.forEach(wit_res.entities, function(entityData, entity) { // Loop through all the entities from the response
-      if(entityData[0].confidence > 0.75) {
+    if(entityData[0].confidence > 0.50) {
         async.waterfall([
           function(next) {
             witModel.getWitResponse(entity, entityData[0].value, next);
@@ -18,7 +18,7 @@ module.exports.createResponse = function createResponse(req, res, wit_res, wit_r
           }
         ],
         function(err, validResponse) {
-          let queryLog = {
+            let queryLog = {
             wit_req    : wit_req,
             wit_res    : wit_res,
             chat_req   : wit_req.query,
@@ -26,6 +26,8 @@ module.exports.createResponse = function createResponse(req, res, wit_res, wit_r
             added_on   : Date.now()
           };
           let response = {
+            status     : 'success',
+            message    : 'Request successfully executed',
             answer     : validResponse,
             confidence : entityData[0].confidence,
             entity     : entity,
@@ -36,7 +38,9 @@ module.exports.createResponse = function createResponse(req, res, wit_res, wit_r
         });
       } else {
         let errorResponse = {
-          answer     : "Wit confidence lavel is low. Please try somthing diffrent",
+          status     : 'success',
+          message    : 'Wit confidence level is low. Please try something different!',
+          answer     : "Sorry, I did not understand your question. Please ask again",
           confidence : entityData[0].confidence,
           entity     : entity,
           value      : entityData[0].value
@@ -46,7 +50,12 @@ module.exports.createResponse = function createResponse(req, res, wit_res, wit_r
       return;
     });
   } else {
-    next(null, wit_res);
+    let witResponse = {
+      status     : 'error',
+      message    : 'Please try somthing else',
+      answer     : "Sorry, I did not understand your question. Please ask again"
+    };
+    next(null, witResponse);
   }
 }
 
