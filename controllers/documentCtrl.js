@@ -117,7 +117,7 @@ function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, nex
   var docString = documentString;
   for(var i=0; i<dictionaryWordsHTML.length; i++) {
     if(_.includes(documentString, dictionaryWordsHTML[i].dictionary_word)) {
-      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word + ' ', 'g'), ' ' + dictionaryWordsHTML[i].html + ' ');
+      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word, 'g'), ' ' + dictionaryWordsHTML[i].html + ' ');
       documentClass  += dictionaryWordsHTML[i].cssClass;
     }
   }
@@ -170,7 +170,7 @@ function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, nex
         } \n\
         .tooltip:hover::after{ \n\
             cursor:pointer; \n\
-            content: "karnataka"; \n\
+            content: ""; \n\
             position: absolute; \n\
             left: 5%; \n\
             right: 5%; \n\

@@ -61,7 +61,7 @@ function returnQueryResponses(response, next) {
   } else if(response.length > 1) {
     validResponse = response[responseLength].reply_text;
   } else {
-    validResponse = "Sorry please try something else";
+    validResponse = "Sorry, I did not understand your question. Please ask again";
   }
   next(null, validResponse);
 }

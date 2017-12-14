@@ -39,6 +39,8 @@ module.exports.chatBoatResponse = function(req, res) {
       }
     },
     function(queryResponse, next) {
+      res.response = queryResponse.answer;
+      witModel.trailsWitLogs(req, res, 'success');
       res.status(200).send(queryResponse);
     }
   ],
@@ -55,7 +57,6 @@ function witResponse(req, res, next) {
   .then((data) => {
     async.waterfall([
       function(next) {
-        console.log(data);
         chatBotServices.createResponse(req, res, data, req.body, next);
       }
     ],
@@ -64,7 +65,8 @@ function witResponse(req, res, next) {
     })
   })
   .catch((error) => {
-    //witModel.trailsWitLogs(req, res, time);
+    res.response = error.message;
+    witModel.trailsWitLogs(req, res, 'failed');
     res.send({status  : "error", message : error});
   });
 }

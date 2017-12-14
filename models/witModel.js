@@ -145,16 +145,16 @@ module.exports.addBotReplyText = function(entityResponse, req, res, next) {
 }
 
 /**
-* This model method is use for to add bot reply text and value in bot reply table
+* This model method is use for to track bot error reply
 */
-module.exports.trailsWitLogs = function(req, res, time) {
-  let resquest      = '"' + req.method + ' "' + req.originalUrl;
-  let query         = {resquest : resquest, status : res.statusCode, host : req.headers.host, response_time : time, query : req.body.query};
+module.exports.trailsWitLogs = function(req, res, status) {
+  let request = '"' + req.method + ' "' + req.originalUrl;
+  let query   = {request : request, host : req.headers.host, query : req.body.query, response : res.response, status:status};
   dbConnection.query('INSERT IGNORE INTO tbl_wit_trails SET ?', query, (err, response) => {
     if(err) {
-      res.status(500).json(err);
+      console.log(err);
     } else {
-      console.log("Wit request log successfully logged");
+      console.log("Error logged");
     }
   });
 }
