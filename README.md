@@ -1,16 +1,16 @@
-TAKEDA TRY ME API.dev v1.0.1
+TAKEDA TRY ME API.dev v1.0.1 
 =
 `NODE` : 8.4.0  
 `NPM` : 5.3.0  
 `MySQL` : 5.0.12  
 `Base URL`: http://ynlhnfju7d.healthcareblocks.com:3090  
 `Version` : 1.0.1
- ## 1. Brand / Details
->## `GET` */brandingDetails*
+ ## 1. Brand / Details 
+>## `GET` */brandingDetails* 
 ### ***Prameters***
 `none`
 ### ***Request***
-`Header`
+`Header` 
 ""
 ```
 {
@@ -42,20 +42,20 @@ TAKEDA TRY ME API.dev v1.0.1
 	"status": "error",
 	"message": "Something went wrong !!"
 }
- ```
+ ``` 
 ***
- ## 2. User / Signup
->## `POST` */signup*
+ ## 2. User / Signup 
+>## `POST` */signup* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _nickName_       | `NO`       | _`String`_ | NONE          |
 | _password_       | `NO`       | _`String`_ | NONE          |
 | _emailId_       | `NO`       | _`String`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 ""
 ```
 {
@@ -85,19 +85,19 @@ TAKEDA TRY ME API.dev v1.0.1
 {
 	"error": "Something went wrong !!"
 }
- ```
+ ``` 
 ***
- ## 3. User / Login
->## `POST` */login*
+ ## 3. User / Login 
+>## `POST` */login* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _password_       | `NO`       | _`String`_ | NONE          |
 | _emailId_       | `NO`       | _`String`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 ""
 ```
 {
@@ -125,18 +125,18 @@ TAKEDA TRY ME API.dev v1.0.1
 {
 	"error": "Something went wrong !!"
 }
- ```
+ ``` 
 ***
- ## 4. User / refreshToken
->## `POST` */refreshToken*
+ ## 4. User / refreshToken 
+>## `POST` */refreshToken* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _access-token_       | `NO`       | _`String`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 {"x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"}
 ```
 {
@@ -163,19 +163,19 @@ TAKEDA TRY ME API.dev v1.0.1
 {
 	"error": "Something went wrong !!"
 }
- ```
+ ``` 
 ***
- ## 5. User / changePassword
->## `POST` */changePassword*
+ ## 5. User / changePassword 
+>## `POST` */changePassword* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _oldPassword_       | `NO`       | _`String`_ | NONE          |
 | _newPassword_       | `NO`       | _`String`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 {"x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"}
 ```
 {
@@ -205,18 +205,18 @@ TAKEDA TRY ME API.dev v1.0.1
 {
 	"error": "Something went wrong !!"
 }
- ```
+ ``` 
 ***
- ## 6. User / forgotPassword
->## `POST` */forgotPassword*
+ ## 6. User / forgotPassword 
+>## `POST` */forgotPassword* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _emailId_       | `NO`       | _`email`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 ""
 ```
 {
@@ -245,14 +245,14 @@ TAKEDA TRY ME API.dev v1.0.1
 	"status": "error",
 	"message": "Email address is not available"
 }
- ```
+ ``` 
 ***
- ## 7. Document / List
->## `GET` */documentList*
+ ## 7. Document / List 
+>## `GET` */documentList* 
 ### ***Prameters***
 `none`
 ### ***Request***
-`Header`
+`Header` 
 {"x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"}
 ```
 {
@@ -285,18 +285,18 @@ TAKEDA TRY ME API.dev v1.0.1
 	"status": "error",
 	"message": "No token provided"
 }
- ```
+ ``` 
 ***
- ## 8. Document / Details
->## `GET` */{documentID}/documentList*
+ ## 8. Document / Details 
+>## `GET` */{documentID}/documentList* 
 ### ***Prameters***
-| Parameters       | Optional   | Type       | Default Value |
+| Parameters       | Optional   | Type       | Default Value | 
 |---------------:  |-----------:|------------|---------------|
 | _documentID_       | `NO`       | _`Number`_ | NONE          |
 |                  |            |            |               |
-
+ 
 ### ***Request***
-`Header`
+`Header` 
 {"x-access-token":"Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOjEsImVtYWlsIjoicHJhbmF5S2F0aXlhckBtb2JpbGVwcm9ncmFtbWluZy5jb20iLCJuaWNrTmFtZSI6InByYW5heUthdGl5YXIiLCJleHAiOjE1MDk0NTUxNzIsImlhdCI6MTUwOTM2ODc3Mn0.uIo9IFXs4ciG-cQ0hOM8C6D10ZiwMRhzCEAjrDKvSPo"}
 ```
 {
@@ -330,5 +330,6 @@ TAKEDA TRY ME API.dev v1.0.1
 	"status": "error",
 	"message": "No token provided"
 }
- ```
+ ``` 
 ***
+ 
