@@ -5,7 +5,7 @@ TAKEDA TRY ME API.dev v1.0.1
 `MySQL` : 5.0.12  
 `Base URL`: http://ynlhnfju7d.healthcareblocks.com:3090  
 `Version` : 1.0.1
- ## 1. Brand / Details 
+## 1. Brand / Details 
 >## `GET` */brandingDetails* 
 ### ***Prameters***
 `none`
