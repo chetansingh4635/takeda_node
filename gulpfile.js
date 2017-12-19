@@ -65,7 +65,7 @@ gulp.task('doc',function(){
 "+jsonData[i]["200"].join('\n')+"\n\
 `401`\n\
 "+jsonData[i]["401"].join('\n')+" \n\
-***\n\ ";
+***\n" ;
             }
             console.log(mdText);
             // console.log(chunk);
@@ -84,7 +84,7 @@ gulp.task('doc',function(){
 
 function parseJson(data){
     for(var k=0;k<data.length;k++){
-        data[k] = '```\n'+JSON.stringify(data[k], null, "\t")+'\n ```';
+        data[k] = '```\n'+JSON.stringify(data[k], null, "\t")+'\n```';
     }
     return data;
 }
@@ -96,7 +96,7 @@ function parseTable(data){
         for(var k=0;k<data.length;k++){
             text += "\n\| _"+data[k].name+"_       | `"+data[k].optional+"`       | _`"+data[k].type+"`_ | "+data[k].default+"          |"; 
         }
-        text += "\n\|                  |            |            |               |\n\ ";
+        text += "\n\|                  |            |            |               |\n";
     }
     else{
         text = "`none`";
