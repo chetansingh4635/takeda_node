@@ -5,7 +5,7 @@ TAKEDA TRY ME API.dev v1.0.1
 `MySQL` : 5.0.12  
 `Base URL`: http://ynlhnfju7d.healthcareblocks.com:3090  
 `Version` : 1.0.1
- ## 1. Brand / Details 
+## 1. Brand / Details 
 >## `GET` */brandingDetails* 
 ### ***Prameters***
 `none`
@@ -44,7 +44,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 2. User / Signup 
+ 
+## 2. User / Signup 
 >## `POST` */signup* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
@@ -87,7 +88,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 3. User / Login 
+ 
+## 3. User / Login 
 >## `POST` */login* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
@@ -127,7 +129,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 4. User / refreshToken 
+ 
+## 4. User / refreshToken 
 >## `POST` */refreshToken* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
@@ -165,7 +168,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 5. User / changePassword 
+ 
+## 5. User / changePassword 
 >## `POST` */changePassword* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
@@ -207,7 +211,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 6. User / forgotPassword 
+ 
+## 6. User / forgotPassword 
 >## `POST` */forgotPassword* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
@@ -247,7 +252,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 7. Document / List 
+ 
+## 7. Document / List 
 >## `GET` */documentList* 
 ### ***Prameters***
 `none`
@@ -287,7 +293,8 @@ TAKEDA TRY ME API.dev v1.0.1
 }
  ``` 
 ***
- ## 8. Document / Details 
+ 
+## 8. Document / Details 
 >## `GET` */{documentID}/documentList* 
 ### ***Prameters***
 | Parameters       | Optional   | Type       | Default Value | 
