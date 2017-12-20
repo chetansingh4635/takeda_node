@@ -16,5 +16,6 @@
     "password"   : "@123Welcome",
     "smtpServer" :"smtp.gmail.com",
     "smtpPort"   : 465
-  }
+  },
+  "activationCode" : 123456
 }

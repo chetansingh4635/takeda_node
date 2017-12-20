@@ -103,7 +103,7 @@ function generateDictionaryWordsHTML(dictionaryWords, req, res, next) {
     content: "' + dictionaryWords[i].dictionary_definition + '";\n\
     }\n\
     .generated_class_' + dictionaryWordClass[0] + ':hover::after{\n\
-      content: "' + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() +'";\$
+      content: "' + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() +'";\n\
     }';
   }
   req.dictionaryWords = dictionaryWords;
@@ -117,7 +117,7 @@ function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, nex
   var documentClass = "";
   for(var i=0; i<dictionaryWordsHTML.length; i++) {
     if(_.includes(documentString, dictionaryWordsHTML[i].dictionary_word)) {
-      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word, 'g'), ' ' + dictionaryWordsHTML[i].$
+      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word, 'g'), ' ' + dictionaryWordsHTML[i].html + ' ');
       documentClass  += dictionaryWordsHTML[i].cssClass;
     }
   }

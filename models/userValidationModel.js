@@ -112,3 +112,16 @@ module.exports.saveChatbotName = function(req, res, next) {
     }
   });
 }
+
+/**
+* This model method is used for to activate clinical trial for registered user
+*/
+module.exports.activateClinicalTrial = function(req, res, next) {
+  dbConnection.query('UPDATE tbl_user_details SET  activation = ? WHERE email = ?', ['TRUE', req.currentUser.email], (err, response) => {
+    if(err) {
+      res.status(401).json({status:'error', message: err});
+    } else {
+      next();
+    }
+  });
+}

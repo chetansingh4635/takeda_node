@@ -38,6 +38,7 @@ module.exports.generateJwt = function(req, res) {
     userID       : req.userDetails.user_id,
     email        : req.userDetails.email,
     nickName     : req.userDetails.nick_name,
+		isActive     : req.userDetails.activation,
     exp          : parseInt(expiry.getTime() / 1000)
   }, configs.secretKey);
 }

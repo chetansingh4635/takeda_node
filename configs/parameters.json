@@ -73,6 +73,17 @@
           "required"  : true
         }
       ]
+    },
+
+    "activateTrial" : {
+      "title" : "activate clinical trial module parameters",
+      "fields": [
+        {
+          "name"      : "activationCode",
+          "type"      : "activationCode",
+          "required"  : true
+        }
+      ]
     }
   }
 }

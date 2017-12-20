@@ -11,6 +11,7 @@ var bunyanLogger     = bunyan.createLogger({name:'tryMe', streams: [{path: 'tryM
 global.configs       = require('./configs.json');
 var witModel         = require('./models/witModel');
 const fs             = require('fs');
+var multer           = require('multer');
 
 /**
 * This block of code is use for to configure application level middlewares
@@ -23,6 +24,12 @@ app.use(cors());
 app.use(express.static(__dirname + 'public')); //setup static public directory
 app.set('views', __dirname + '/public');
 app.set('view engine', 'ejs'); // Configure ejs as view engine for rendring html templates
+app.use(multer({ storage :
+	multer.diskStorage({
+		destination: function (req, file, cb) { cb(null, 'uploads/')},
+		filename: function (req, file, cb) { cb(null, Date.now() + '.jpg')}
+	})
+}).any());
 
 /**
 * This middleware is use for to enable cores for all incomming API calls
@@ -53,8 +60,9 @@ app.use('/v' + configs.version + '/wit', require('./routes/witRoute.js'));      
 * Creating Unit Test Doc Server Response HTML
 */
 app.get('/unitTestReport',function(req,res){
-     res.sendFile(__dirname +'/unitTestReport/report.html');
+  res.sendFile(__dirname +'/unitTestReport/report.html');
 });
+
 fs.readdir('unitTestReport/assets', (err, files) => {
   files.forEach(file => {
     console.log(file);

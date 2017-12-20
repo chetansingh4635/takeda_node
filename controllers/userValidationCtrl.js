@@ -274,3 +274,30 @@ module.exports.addChatbotName = function(req, res) {
     console.log(err);
   })
 }
+
+/**
+* This method is use for to activate user clinical trial
+*/
+module.exports.activateTrial = function(req, res) {
+  let validatorResponse = globalServices.validateParams('activateTrial', req.body, req, res);
+  if(validatorResponse) {
+    async.series([
+      function(next) {
+        globalServices.validateAccessToken(req, res, next); //call validate token method of global service
+      },
+      function(next) {
+        if(configs.activationCode == validatorResponse.activationCode) {
+          userValidationModel.activateClinicalTrial(req, res, next); //This model method is called for to add chatbot name
+        } else {
+          res.status(409).json({status: 'error', message: 'Invalid activation code'});
+        }
+      },
+      function(next) {
+        res.status(200).json({status: 'success', message: 'Trial successfully activated'});
+      }
+    ],
+    function(err, result) {
+      console.log(err);
+    });
+  }
+}
