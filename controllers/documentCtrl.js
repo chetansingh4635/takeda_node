@@ -97,12 +97,13 @@ module.exports.getDocumentDetails = function(req, res) {
 */
 function generateDictionaryWordsHTML(dictionaryWords, req, res, next) {
   for(var i=0; i<dictionaryWords.length; i++) {
-    dictionaryWords[i].html     = '<span onclick="" class="tooltip generated_class_'+ dictionaryWords[i].dictionary_word +'"><span>' + dictionaryWords[i].dictionary_word + '<span class="arrow">&#9650;</span></span> </span>';
-    dictionaryWords[i].cssClass ='.generated_class_'+ dictionaryWords[i].dictionary_word +':hover::before {\n\
+    let dictionaryWordClass     = dictionaryWords[i].dictionary_word.split(" ");
+    dictionaryWords[i].html     = '<span onclick="" class="tooltip generated_class_'+ dictionaryWords[i].dictionary_word +'"><span>' + diction$
+    dictionaryWords[i].cssClass = '.generated_class_'+ dictionaryWordClass[0] +':hover::before {\n\
     content: "' + dictionaryWords[i].dictionary_definition + '";\n\
     }\n\
-    .generated_class_' + dictionaryWords[i].dictionary_word + ':hover::after{\n\
-      content: "' + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() +'";\n\
+    .generated_class_' + dictionaryWordClass[0] + ':hover::after{\n\
+      content: "' + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() +'";\$
     }';
   }
   req.dictionaryWords = dictionaryWords;
@@ -114,14 +115,12 @@ function generateDictionaryWordsHTML(dictionaryWords, req, res, next) {
 */
 function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, next) {
   var documentClass = "";
-  var docString = documentString;
   for(var i=0; i<dictionaryWordsHTML.length; i++) {
     if(_.includes(documentString, dictionaryWordsHTML[i].dictionary_word)) {
-      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word, 'g'), ' ' + dictionaryWordsHTML[i].html + ' ');
+      documentString  = _.replace(documentString, new RegExp(' ' + dictionaryWordsHTML[i].dictionary_word, 'g'), ' ' + dictionaryWordsHTML[i].$
       documentClass  += dictionaryWordsHTML[i].cssClass;
     }
   }
-
   var doc = '<html xmlns="http://www.w3.org/1999/xhtml"> \n\
 <head> \n\
 <meta charset="UTF-8"> \n\
@@ -149,7 +148,7 @@ function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, nex
             border-bottom: 1px dotted #ccc; \n\
             zcursor: help; \n\
             color: #006080; \n\
-            text-align:justify; \n\
+            text-align:left; \n\
         } \n\
         .tooltip:hover::before{ \n\
             cursor:pointer; \n\
@@ -235,7 +234,7 @@ function generateDocumentHTML(dictionaryWordsHTML, documentString, req, res, nex
         '+documentClass+'\n\
     </style>\n\
 </head>\n\
-    <body ontouchstart  onclick="" class="fontSizeMedium" style="text-align:justify;">\n\
+    <body ontouchstart  onclick="" class="fontSizeMedium" style="text-align:left;">\n\
     '+ documentString+'\n\
     </body>\n\
 </html>';
