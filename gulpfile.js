@@ -30,7 +30,7 @@ gulp.task('doc',function(){
 `NPM` : 5.3.0  \n\
 `MySQL` : 5.0.12  \n\
 `Base URL`: http://"+configData.baseURL+"  \n\
-`Version` : "+configData.version+"\n\ ";
+`Version` : "+configData.version;
             for(var i=0;i<jsonData.length;i++){
 
                 // for(var k=0;k<jsonData[i]["200"].length;k++){
@@ -42,7 +42,7 @@ gulp.task('doc',function(){
                 jsonData[i]["header"] = parseJson(jsonData[i]["header"]);
                 jsonData[i].parameters = parseTable(jsonData[i].parameters);
 
-                mdText += "## "+(i+1)+". "+ jsonData[i].name +" \n\
+                mdText += "\n\## "+(i+1)+". "+ jsonData[i].name +" \n\
 >## `"+ jsonData[i].type +"` */"+ jsonData[i].url +"* \n\
 ### ***Prameters***\n\
 "+ jsonData[i].parameters +"\n\
@@ -65,7 +65,7 @@ gulp.task('doc',function(){
 "+jsonData[i]["200"].join('\n')+"\n\
 `401`\n\
 "+jsonData[i]["401"].join('\n')+" \n\
-***\n\ ";
+***\n" ;
             }
             console.log(mdText);
             // console.log(chunk);
@@ -84,7 +84,7 @@ gulp.task('doc',function(){
 
 function parseJson(data){
     for(var k=0;k<data.length;k++){
-        data[k] = '```\n'+JSON.stringify(data[k], null, "\t")+'\n ```';
+        data[k] = '```\n'+JSON.stringify(data[k], null, "\t")+'\n```';
     }
     return data;
 }
@@ -96,7 +96,7 @@ function parseTable(data){
         for(var k=0;k<data.length;k++){
             text += "\n\| _"+data[k].name+"_       | `"+data[k].optional+"`       | _`"+data[k].type+"`_ | "+data[k].default+"          |"; 
         }
-        text += "\n\|                  |            |            |               |\n\ ";
+        text += "\n\|                  |            |            |               |\n";
     }
     else{
         text = "`none`";

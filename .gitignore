@@ -1,0 +1,4 @@
+# Ignore standard IDE project files
+node_modules
+apiDoc.txt
+README.pdf
