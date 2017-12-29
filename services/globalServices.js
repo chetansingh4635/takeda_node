@@ -32,13 +32,13 @@ module.exports.validateAccessToken = function(req, res, next) {
 * This function is use for to generate access token
 */
 module.exports.generateJwt = function(req, res) {
-  var expiry = new Date();
+	var expiry = new Date();
   expiry.setDate(expiry.getDate() + 1);
   return 'Bearer~' + jwt.sign({
-    userID       : req.userDetails.user_id,
+    chatbotName  : req.userDetails.chatbotName || '',
     email        : req.userDetails.email,
     nickName     : req.userDetails.nick_name,
-		isActive     : req.userDetails.activation,
+    isActive     : req.userDetails.activation,
     exp          : parseInt(expiry.getTime() / 1000)
   }, configs.secretKey);
 }
