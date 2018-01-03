@@ -98,7 +98,7 @@ module.exports.getDocumentDetails = function(req, res) {
 function generateDictionaryWordsHTML(dictionaryWords, req, res, next) {
   for(var i=0; i<dictionaryWords.length; i++) {
     let dictionaryWordClass     = dictionaryWords[i].dictionary_word.split(" ");
-    dictionaryWords[i].html     = '<span onclick="" class="tooltip generated_class_'+ dictionaryWords[i].dictionary_word +'"><span>' + diction$
+    dictionaryWords[i].html     = '<span onclick="" class="tooltip generated_class_'+ dictionaryWords[i].dictionary_word +'"><span>' + dictionaryWords[i].dictionary_word + '<span class="arrow">&#9650;</span></span> </span>';
     dictionaryWords[i].cssClass = '.generated_class_'+ dictionaryWordClass[0] +':hover::before {\n\
     content: "' + dictionaryWords[i].dictionary_definition + '";\n\
     }\n\
