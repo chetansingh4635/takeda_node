@@ -5,6 +5,7 @@ var nodemailer          = require('nodemailer');
 var randomstring        = require('randomstring');
 var userValidationModel = require('../models/userValidationModel');
 var globalServices      = require('../services/globalServices');
+var fs                  = require('fs');
 
 var smtpTransport = nodemailer.createTransport({
     host: configs.emailConfig.smtpServer,
@@ -70,8 +71,16 @@ module.exports.login = function(req, res) {
         validatePassword(validatorResponse, req, res, next); //Validate login user password
       },
       function(next) {
+        if(req.userDetails.image_name) {
+          getProfileImage(req.userDetails.image_name, req, res, next);//get the base64 encoded image
+        } else {
+          next(null, null);
+        }
+      },
+      function(imageContent, next) {
+        let imageString = new Buffer(imageContent).toString('base64');
         let token = globalServices.generateJwt(req, res); //Call generate access-token method of global service
-        res.status(200).json({status : 'success', 'access-token' : token}); //Send access token to the user
+        res.status(200).json({status : 'success', 'access-token' : token, imageData : imageString}); //Send access token to the user
       }
     ],
     function(err, result) {
@@ -272,10 +281,10 @@ module.exports.addChatbotName = function(req, res) {
   ],
   function(err, result) {
     console.log(err);
-  })
+  });
 }
 
-/**
+/*
 * This method is use for to activate user clinical trial
 */
 module.exports.activateTrial = function(req, res) {
@@ -287,7 +296,7 @@ module.exports.activateTrial = function(req, res) {
       },
       function(next) {
         if(configs.activationCode == validatorResponse.activationCode) {
-          userValidationModel.activateClinicalTrial(req, res, next); //This model method is called for to add chatbot name
+            userValidationModel.activateClinicalTrial(req, res, next); //This model method is called for to add chatbot name
         } else {
           res.status(409).json({status: 'error', message: 'Invalid activation code'});
         }
@@ -300,4 +309,125 @@ module.exports.activateTrial = function(req, res) {
       console.log(err);
     });
   }
+}
+
+/**
+* This function is use for user settings details update process
+*/
+module.exports.updateUesrSettings = function(req, res) {
+  let requestAction = req.body.action || req.query.action || req.params.action;
+  switch (requestAction) {
+    case 'settingImage':
+      saveUserImage(req, res);
+      break;
+
+    case 'settingImageParams':
+      saveUserSettingData(req, res);
+      break;
+
+    default:
+      res.status(409).json({status : 'error', message : 'Action not availale'})
+  }
+}
+
+/**
+* This function use to save user profile image on server
+*/
+function saveUserImage(req, res) {
+  async.waterfall([
+    function(next) {
+      globalServices.validateAccessToken(req, res, next);
+    },
+    function(next) {
+      renameProfileImage(req, res, next);
+    },
+    function(profileImageName, next) {
+      userValidationModel.saveImageProfileName(profileImageName, req, res, next);
+    },
+    function(profileImageName, next) {
+      getProfileImage(profileImageName, req, res, next);
+    }
+  ],
+  function(err, result) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.status(200).json({status:'success', message: 'User settings successfully changed', imageData: new Buffer(result).toString('base64')});
+    }
+  });
+}
+
+/**
+* This function use to access user profile image data
+*/
+function getProfileImage(profileImageName, req, res, next) {
+  fs.readFile(configs.uploadPath + profileImageName + '.jpeg', function (err, content) {
+    if(err) {
+      res.status(401).json({status : 'error', message : 'User profile image not available'});
+    } else {
+      next(null, content);
+    }
+  });
+}
+
+/**
+* This function use to rename user profile image
+*/
+function renameProfileImage(req, res, next) {
+  var replaceImageName = req.currentUser.email.replace(/[@.]/g,'_');
+  fs.rename(req.files[0].path, configs.uploadPath + replaceImageName + '.jpeg', function(err) {
+    if(err) {
+      res.status(401).json({status : 'error', message : err});
+    } else {
+      next(null, replaceImageName);
+    }
+  });
+}
+
+/**
+* This function use to update user setting details
+*/
+function saveUserSettingData(req, res) {
+  async.series([
+    function(next) {
+      globalServices.validateAccessToken(req, res, next); //call validate token method of global service
+    },
+    function(next) {
+      userValidationModel.saveSettings(req, res, next); //This model method is called for saving settings
+    },
+    function(next) {
+      if(req.files[0]) {
+        updateProfileImage(req, res);
+      } else {
+        next();
+      }
+    }
+  ],
+  function(err, result) {
+    if(err) {
+      console.log(err);
+    } else {
+      res.status(200).json({status:'success', message: 'User settings successfully changed', imagedata:''});
+    }
+  });
+}
+
+/**
+* This function is use for update user profile image
+*/
+function updateProfileImage(req, res) {
+  async.waterfall([
+    function(next) {
+      renameProfileImage(req, res, next);
+    },
+    function(profileImageName, next) {
+      userValidationModel.saveImageProfileName(profileImageName, req, res, next);
+    },
+    function(profileImageName, next) {
+      getProfileImage(profileImageName, req, res, next);
+    }
+  ],
+  function(err, result) {
+    res.status(200).json({status:'success', message: 'User settings successfully changed', imagedata: new Buffer(result).toString('base64')});
+  });
 }

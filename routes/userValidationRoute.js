@@ -13,6 +13,7 @@ router.post('/resetPassword',      validationCtrl.resetPassword);
 router.post('/refreshToken',       validationCtrl.generateRefreshToken);
 router.put('/addChatbotName',      validationCtrl.addChatbotName);
 router.put('/activateTrial',       validationCtrl.activateTrial);
+router.put('/userSettings',        validationCtrl.updateUesrSettings);
 router.get('/verifyEmail',         validationCtrl.verifyEmail);
 router.get('/:emailId/user/exist', validationCtrl.isUserExist);
 

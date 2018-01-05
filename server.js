@@ -26,8 +26,7 @@ app.set('views', __dirname + '/public');
 app.set('view engine', 'ejs'); // Configure ejs as view engine for rendring html templates
 app.use(multer({ storage :
 	multer.diskStorage({
-		destination: function (req, file, cb) { cb(null, 'uploads/')},
-		filename: function (req, file, cb) { cb(null, Date.now() + '.jpg')}
+		destination: function (req, file, cb) { cb(null, 'uploads/')}
 	})
 }).any());
 
