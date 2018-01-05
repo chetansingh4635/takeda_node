@@ -317,11 +317,11 @@ module.exports.activateTrial = function(req, res) {
 module.exports.updateUesrSettings = function(req, res) {
   let requestAction = req.body.action || req.query.action || req.params.action;
   switch (requestAction) {
-    case 'settingImage':
+    case 'uploadProfilePicture':
       saveUserImage(req, res);
       break;
 
-    case 'settingImageParams':
+    case 'updateSettingDetails':
       saveUserSettingData(req, res);
       break;
 
