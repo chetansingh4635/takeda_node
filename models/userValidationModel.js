@@ -149,7 +149,7 @@ module.exports.saveSettings = function(req, res, next) {
 * This model method is use to save user profile image name
 */
 module.exports.saveImageProfileName = function(profileImageName, req, res, next) {
-  dbConnection.query('UPDATE tbl_user_details SET profile_image = ? WHERE email = ?', [profileImageName, req.currentUser.email], (err, response) => {
+  dbConnection.query('UPDATE tbl_user_details SET image_name = ? WHERE email = ?', [profileImageName, req.currentUser.email], (err, response) => {
     if(err) {
       res.status(401).json({status : 'error', message : err});
     } else {

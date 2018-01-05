@@ -78,9 +78,9 @@ module.exports.login = function(req, res) {
         }
       },
       function(imageContent, next) {
-        let imageString = new Buffer(imageContent).toString('base64');
+        //let imageString = new Buffer(imageContent).toString('base64');
         let token = globalServices.generateJwt(req, res); //Call generate access-token method of global service
-        res.status(200).json({status : 'success', 'access-token' : token, imageData : imageString}); //Send access token to the user
+        res.status(200).json({status : 'success', 'access-token' : token, imageData : imageContent}); //Send access token to the user
       }
     ],
     function(err, result) {
@@ -334,27 +334,31 @@ module.exports.updateUesrSettings = function(req, res) {
 * This function use to save user profile image on server
 */
 function saveUserImage(req, res) {
-  async.waterfall([
-    function(next) {
-      globalServices.validateAccessToken(req, res, next);
-    },
-    function(next) {
-      renameProfileImage(req, res, next);
-    },
-    function(profileImageName, next) {
-      userValidationModel.saveImageProfileName(profileImageName, req, res, next);
-    },
-    function(profileImageName, next) {
-      getProfileImage(profileImageName, req, res, next);
-    }
-  ],
-  function(err, result) {
-    if(err) {
-      console.log(err);
-    } else {
-      res.status(200).json({status:'success', message: 'User settings successfully changed', imageData: new Buffer(result).toString('base64')});
-    }
-  });
+  if(req.files[0]) {
+    async.waterfall([
+      function(next) {
+        globalServices.validateAccessToken(req, res, next);
+      },
+      function(next) {
+        renameProfileImage(req, res, next);
+      },
+      function(profileImageName, next) {
+        userValidationModel.saveImageProfileName(profileImageName, req, res, next);
+      },
+      function(profileImageName, next) {
+        getProfileImage(profileImageName, req, res, next);
+      }
+    ],
+    function(err, result) {
+      if(err) {
+        console.log(err);
+      } else {
+        res.status(200).json({status:'success', message: 'Profile picture successfully uploaded', imageData: result});
+      }
+    });
+  } else {
+    res.status(401).json({status:'error', message: 'Failed to upload the profile picture.Please try again!'})
+  }
 }
 
 /**
@@ -365,7 +369,7 @@ function getProfileImage(profileImageName, req, res, next) {
     if(err) {
       res.status(401).json({status : 'error', message : 'User profile image not available'});
     } else {
-      next(null, content);
+      next(null,  new Buffer(content).toString('base64'));
     }
   });
 }
@@ -428,6 +432,6 @@ function updateProfileImage(req, res) {
     }
   ],
   function(err, result) {
-    res.status(200).json({status:'success', message: 'User settings successfully changed', imagedata: new Buffer(result).toString('base64')});
+    res.status(200).json({status:'success', message: 'User settings successfully changed', imagedata: result});
   });
 }
