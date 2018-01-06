@@ -268,20 +268,23 @@ module.exports.verifyEmail = function(req, res) {
 * This method is use for to save chatbot name in user schema
 */
 module.exports.addChatbotName = function(req, res) {
-  async.series([
-    function(next) {
-      globalServices.validateAccessToken(req, res, next); //call validate token method of global service
-    },
-    function(next) {
-      userValidationModel.saveChatbotName(req, res, next); //This model method is called for to add chatbot name
-    },
-    function(next) {
-      res.status(200).json({status: 'success', message: 'Chatbot name successfully added'})
-    }
-  ],
-  function(err, result) {
-    console.log(err);
-  });
+  let validatorResponse = globalServices.validateParams('addChatbotName', req.body, req, res);
+  if(validatorResponse) {
+    async.series([
+      function(next) {
+        globalServices.validateAccessToken(req, res, next); //call validate token method of global service
+      },
+      function(next) {
+        userValidationModel.saveChatbotName(req, res, next); //This model method is called for to add chatbot name
+      },
+      function(next) {
+        res.status(200).json({status: 'success', message: 'Chatbot name successfully added'})
+      }
+    ],
+    function(err, result) {
+      console.log(err);
+    });
+  }
 }
 
 /*
@@ -315,18 +318,21 @@ module.exports.activateTrial = function(req, res) {
 * This function is use for user settings details update process
 */
 module.exports.updateUesrSettings = function(req, res) {
-  let requestAction = req.body.action || req.query.action || req.params.action;
-  switch (requestAction) {
-    case 'uploadProfilePicture':
-      saveUserImage(req, res);
-      break;
+  let requestAction     = req.body.action || req.query.action || req.params.action;
+  let validatorResponse = globalServices.validateParams('updateUserSettings', req.body, req, res);
+  if(validatorResponse) {
+    switch (requestAction) {
+      case 'uploadProfilePicture':
+        saveUserImage(req, res);
+        break;
 
-    case 'updateSettingDetails':
-      saveUserSettingData(req, res);
-      break;
+      case 'updateSettingDetails':
+        saveUserSettingData(req, res);
+        break;
 
-    default:
-      res.status(409).json({status : 'error', message : 'Action not availale'})
+      default:
+        res.status(409).json({status : 'error', message : 'Action not availale'})
+    }
   }
 }
 

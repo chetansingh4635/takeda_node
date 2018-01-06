@@ -84,6 +84,34 @@
           "required"  : true
         }
       ]
+    },
+
+    "updateUserSettings" : {
+      "title" : "User settings module parameters",
+      "fields": [
+        {
+          "name"      : "nickName",
+          "type"      : "userName",
+          "required"  : true
+        },
+        {
+          "name"      : "chatbotName",
+          "type"      : "userName",
+          "required"  : true
+        }
+      ]
+    },
+
+    "addChatbotName" : {
+      "title" : "Add chatbot name module parameters",
+      "fields": [
+        {
+          "name"      : "chatbotName",
+          "type"      : "userName",
+          "required"  : true
+        }
+      ]
     }
+
   }
 }
