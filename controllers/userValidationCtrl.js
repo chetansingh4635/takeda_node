@@ -114,7 +114,6 @@ module.exports.changePassword = function(req, res) {
       function(next) {
         let token = globalServices.generateJwt(req, res); //Call generate access-token method of global service
         res.status(200).json({
-          'access-token' : token,
           status         : 'success',
           message        : 'Password successfully changed'
         });
