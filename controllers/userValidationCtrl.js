@@ -71,14 +71,10 @@ module.exports.login = function(req, res) {
         validatePassword(validatorResponse, req, res, next); //Validate login user password
       },
       function(next) {
-        if(req.userDetails.image_name) {
-          getProfileImage(req.userDetails.image_name, req, res, next);//get the base64 encoded image
-        } else {
-          next(null, null);
-        }
+        let profileImageName = req.userDetails.image_name || configs.defProfileImage;
+        getProfileImage(profileImageName, req, res, next);//get the base64 encoded image
       },
       function(imageContent, next) {
-        //let imageString = new Buffer(imageContent).toString('base64');
         let token = globalServices.generateJwt(req, res); //Call generate access-token method of global service
         res.status(200).json({status : 'success', 'access-token' : token, imageData : imageContent}); //Send access token to the user
       }

@@ -17,6 +17,7 @@
     "smtpServer" :"smtp.gmail.com",
     "smtpPort"   : 465
   },
-  "activationCode" : 123456,
-  "uploadPath"     : "uploads/"
+  "activationCode"  : 123456,
+  "uploadPath"      : "uploads/",
+  "defProfileImage" : "defaultProfile"
 }
