@@ -1,7 +1,7 @@
 {
   "accessToken" : "CKLTKNUYRJXHZYPFXWWXJMQ3FURN6MET",
   "secretKey"   : "R2VBRK3JC7QOB4CL6B5VN5532UR7LZXE",
-  "version"     : "1.0.1",
+  "version"     : "1.0.2/UAT",
   "appName"     : "Takeda Try Me",
   "baseURL"     : "ynlhnfju7d.healthcareblocks.com:3090",
   "appPort"     : 3090,
