@@ -30,7 +30,6 @@ module.exports.getDocumnetList = function(req, res) {
 * This function is use for to retrieve documnet details but in Open form
 */
 module.exports.openDocDetailsHTML = function(req, res) {
-
   var documentID = req.body.documentID || req.params.documentID || req.query.documentID;
   async.waterfall([
     function(next) {
@@ -71,6 +70,7 @@ module.exports.getDocumentDetails = function(req, res) {
       documentModel.retrieveDocumentContent(documentID, req, res, next);
     },
     function(documentContent, next) {
+      req.document_details = documentContent;
       generateDictionaryWordsHTML(req.dictionaryWords, req, res, next);
     },
     function(dictionaryWordsHTML, next) {
@@ -78,7 +78,7 @@ module.exports.getDocumentDetails = function(req, res) {
     },
     function(documentDescription, next) {
       req.document_description = documentDescription;
-      if(documentID == 1 || 2) {
+      if(req.document_details.document_simplified !== '') {
         generateDocumentHTML(req.dictionaryWords, req.documentContent.document_simplified, req, res, next);
       } else {
         next();
@@ -99,13 +99,13 @@ module.exports.getDocumentDetails = function(req, res) {
 function generateDictionaryWordsHTML(dictionaryWords, req, res, next) {
   for(var i=0; i<dictionaryWords.length; i++) {
     let dictionaryWordClass     = dictionaryWords[i].dictionary_word.split(" ");
-    dictionaryWords[i].html     = '<span onclick="" class="tooltip generated_class_'+ dictionaryWords[i].dictionary_word +'"><span>' + dictionaryWords[i].dictionary_word + '<span class="arrow">&#9650;</span></span> </span>';
-    dictionaryWords[i].cssClass = '.generated_class_'+ dictionaryWordClass[0] +':hover::before {\n\
-    content: "' + dictionaryWords[i].dictionary_definition + '";\n\
-    }\n\
-    .generated_class_' + dictionaryWordClass[0] + ':hover::after{\n\
-      content: "' + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() +'";\n\
-    }';
+    dictionaryWords[i].html     = `<span onclick="" class="tooltip generated_class_`+ dictionaryWords[i].dictionary_word + `"><span>` + dictionaryWords[i].dictionary_word + `<span class="arrow">&#9650;</span></span> </span>`;
+    dictionaryWords[i].cssClass = `.generated_class_` + dictionaryWordClass[0] + `:hover::before {
+    content: "` + dictionaryWords[i].dictionary_definition + `";
+    }
+    .generated_class_` + dictionaryWordClass[0] + `:hover::after{
+      content: "` + dictionaryWords[i].dictionary_word.charAt(0).toUpperCase()+dictionaryWords[i].dictionary_word.slice(1).toLowerCase() + `";
+    }`;
   }
   req.dictionaryWords = dictionaryWords;
   next(null, dictionaryWords);

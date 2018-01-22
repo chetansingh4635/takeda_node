@@ -1,6 +1,5 @@
 var crypto         = require('crypto');
 var async          = require('async');
-var jwt            = require('jsonwebtoken');
 var randomstring   = require('randomstring');
 var dbConnection   = require('./dbConnection');
 

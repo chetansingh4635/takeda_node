@@ -3,13 +3,11 @@ const express     	 = require('express');
 const app         	 = express();
 const bodyParser 	   = require('body-parser');
 const cors        	 = require('cors');
-const jwt            = require('jsonwebtoken');
 var expressValidator = require('express-validator');
 var bunyan           = require('bunyan');
 var bunyanMiddleware = require('bunyan-middleware');
 var bunyanLogger     = bunyan.createLogger({name:'tryMe', streams: [{path: 'tryMe.log'}]});
 global.configs       = require('./configs.json');
-var witModel         = require('./models/witModel');
 const fs             = require('fs');
 var multer           = require('multer');
 

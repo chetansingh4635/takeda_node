@@ -52,12 +52,12 @@ module.exports.generateJwt = function(req, res) {
    var selectedData   = {};
 
    if(action in paramsValidator.params) {
-     for(var i=0; i<paramsValidator.params[action].fields.length; i++) {
+     for(let i=0; i<paramsValidator.params[action].fields.length; i++) {
        permitted_data.push(paramsValidator.params[action].fields[i].name);
      }
    }
 
-   for(var i=0; i<permitted_data.length; i++) {
+   for(let i=0; i<permitted_data.length; i++) {
      if(permitted_data[i] in params) {
         req.check(permitted_data[i], 'Validation Failed').matches(eval(validationPattern.fields[paramsValidator.params[action].fields[i].type].pattern));
          var errors =  req.validationErrors();

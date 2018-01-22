@@ -1,6 +1,5 @@
 var crypto              = require('crypto');
 var async               = require('async');
-var jwt                 = require('jsonwebtoken');
 var nodemailer          = require('nodemailer');
 var randomstring        = require('randomstring');
 var userValidationModel = require('../models/userValidationModel');
@@ -108,7 +107,6 @@ module.exports.changePassword = function(req, res) {
         userValidationModel.updatePassword(validatorResponse, req, res, next); //Call updatePassword model method of userValidationModel for update user old password to new password
       },
       function(next) {
-        let token = globalServices.generateJwt(req, res); //Call generate access-token method of global service
         res.status(200).json({
           status         : 'success',
           message        : 'Password successfully changed'
