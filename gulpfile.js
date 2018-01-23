@@ -46,6 +46,8 @@ gulp.task('doc',function(){
 >## `"+ jsonData[i].type +"` */"+ jsonData[i].url +"* \n\
 ### ***Prameters***\n\
 "+ jsonData[i].parameters +"\n\
+### ***Description***\n\
+"+ jsonData[i].description +"\n\
 ### ***Request***\n\
 `Header` \n\
 "+JSON.stringify(jsonData[i]["header"])+"\n\
@@ -67,11 +69,11 @@ gulp.task('doc',function(){
 "+jsonData[i]["401"].join('\n')+" \n\
 ***\n" ;
             }
-            console.log(mdText);
+            //console.log(mdText);
             // console.log(chunk);
 
-        cb(null, mdText) // note we can use the second argument on the callback 
-                        // to provide data as an alternative to this.push('wut?') 
+        cb(null, mdText) // note we can use the second argument on the callback
+                        // to provide data as an alternative to this.push('wut?')
         }
     ))
     .pipe(fs.createWriteStream('apiDoc.txt'));
@@ -94,13 +96,13 @@ function parseTable(data){
         var text = "| Parameters       | Optional   | Type       | Default Value | \n\
 |---------------:  |-----------:|------------|---------------|";
         for(var k=0;k<data.length;k++){
-            text += "\n\| _"+data[k].name+"_       | `"+data[k].optional+"`       | _`"+data[k].type+"`_ | "+data[k].default+"          |"; 
+            text += "\n\| _"+data[k].name+"_       | `"+data[k].optional+"`       | _`"+data[k].type+"`_ | "+data[k].default+"          |";
         }
         text += "\n\|                  |            |            |               |\n";
     }
     else{
         text = "`none`";
     }
-    
+
     return text;
 }
