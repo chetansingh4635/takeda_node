@@ -41,6 +41,8 @@
     "nodemon": "^1.12.1",
     "sinon": "^4.1.1",
     "superagent": "^3.8.0",
-    "through2": "^2.0.3"
+    "through2": "^2.0.3",
+    "markdown-pdf": "^8.1.0",
+    "remarkable-classy": "0.0.1"
   }
 }

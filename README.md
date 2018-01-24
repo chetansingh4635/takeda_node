@@ -1,10 +1,10 @@
 TAKEDA TRY ME API.dev v1.0.2/DEV 
-=
-`NODE` : 8.4.0  
-`NPM` : 5.3.0  
-`MySQL` : 5.0.12  
-`Base URL`: http://ynlhnfju7d.healthcareblocks.com:3090  
-`Version` : 1.0.2/DEV
+            =
+            `NODE` : 6.x.x  
+            `NPM` : 5.x.x  
+            `MySQL` : 5.5.58  
+            `Base URL`: http://ynlhnfju7d.healthcareblocks.com:3090  
+            `Version` : 1.0.2/DEV
 ## 1. Brand / Details 
 >## `GET` */brandingDetails* 
 ### ***Prameters***
