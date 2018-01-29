@@ -15,7 +15,7 @@ module.exports.createResponse = function createResponse(req, res, wit_res, wit_r
     _.forEach(wit_res.entities, function(entityData, entity) { // Loop through all the entities from the response
         async.waterfall([
           function(next) {
-            let witResponseValues = entityData.map(function(obj){return obj.value}).toString().replace(',', ' ');
+            let witResponseValues = entityData.map(function(obj){return obj.value}).toString().replace(new RegExp(',', 'g'), ' ');
             filterWitResponse(req, res, witResponseValues, next);
           },
           function(userQuery, next) {
@@ -92,6 +92,7 @@ function loading_error (error) {
 * This function is use for to filter the user query
 */
 function filterWitResponse(req, res, witResponseValues, next) {
+  debugger
   bot.sortReplies();
   var userQuery = bot.reply("local-user", witResponseValues);
   logger.info("Wit Response = " + witResponseValues + '  Middleware Response = ' + userQuery);
