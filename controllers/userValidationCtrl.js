@@ -2,6 +2,9 @@ var crypto              = require('crypto');
 var async               = require('async');
 var nodemailer          = require('nodemailer');
 var randomstring        = require('randomstring');
+var log4js              = require('log4js');
+var logger              = log4js.getLogger();
+logger.level            = 'debug';
 var userValidationModel = require('../models/userValidationModel');
 var globalServices      = require('../services/globalServices');
 var fs                  = require('fs');
@@ -79,7 +82,7 @@ module.exports.login = function(req, res) {
       }
     ],
     function(err, result) {
-      console.log(err);
+      logger.error(err);
     })
   }
 };
@@ -114,7 +117,7 @@ module.exports.changePassword = function(req, res) {
       }
     ],
     function(err, result) {
-      console.log(err);
+      logger.error(err);
     })
   }
 }
@@ -194,7 +197,7 @@ module.exports.generateRefreshToken = function(req, res) {
     }
   ],
   function(err, result) {
-    console.log(err);
+    logger.error(err);
   })
 }
 
@@ -253,7 +256,7 @@ module.exports.verifyEmail = function(req, res) {
     }
   ],
   function(err, result) {
-    console.log(err);
+    logger.error(err);
   })
 };
 
@@ -275,7 +278,7 @@ module.exports.addChatbotName = function(req, res) {
       }
     ],
     function(err, result) {
-      console.log(err);
+      logger.error(err);
     });
   }
 }
@@ -302,7 +305,7 @@ module.exports.activateTrial = function(req, res) {
       }
     ],
     function(err, result) {
-      console.log(err);
+      logger.error(err);
     });
   }
 }
@@ -350,7 +353,7 @@ function saveUserImage(req, res) {
     ],
     function(err, result) {
       if(err) {
-        console.log(err);
+        logger.error(err);
       } else {
         res.status(200).json({status:'success', message: 'Profile picture successfully uploaded', imageData: result});
       }
@@ -408,7 +411,7 @@ function saveUserSettingData(req, res) {
   ],
   function(err, result) {
     if(err) {
-      console.log(err);
+      logger.error(err);
     } else {
       res.status(200).json({status:'success', message: 'User settings successfully changed', imagedata:''});
     }

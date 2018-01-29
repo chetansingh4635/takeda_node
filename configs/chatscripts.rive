@@ -1,171 +1,56 @@
-! version       = 2.0
-! var name      = ChatBot
-! var favoriteColor = cyan
-! array colors  = red green blue cyan magenta yellow black white orange brown sky
+! version           = 2.0
+! var name          = ChatBot
 
-+ (hello|hi|hey)
-- Hello
-- hey
-- Hey, what do you need?
-- Hi, How are you doing?
-- Hi there, how can I help you?
-- Hello, How may I help you?
-- Hello, How are you?
++ (benefits overview|overview benefits)
+- benefits
 
-+ how are you [*]
-- I'm great, how are you?
-- I'm good, you?
-- Good :) you?
-- Great! You?
-- I'm fine, thanks for asking!
++ (purpose overview|overview purpose)
+- purpose
 
-+ (what about you|and you)
-@ how are you
++ (eligibility overview|overview eligibility)
+- eligibility
 
-+ i am (good|greate)
-- oh, thats greate!
++ (risks overview|overview risks)
+- risks
 
-+ *
-% * who
-- LOL! <star>! That's funny!
-- I'm not sure how to reply to that.
-- I am really sorry to hear that. Is there anything I can do to help you?
++ (payment overview|overview payment)
+- payment
 
-+ [*] (favorite color|color) [*]
-- I like <star> too (@colors).
++ (quit overview|overview quit)
+- quit
 
-+ [*](bot|machine)[*]
-- How did you say that I'm a machine?
++ placebo
+- placebo
 
-+ i am # years old
-- A lot of people are <star> years old.
++ overview
+- overview
 
-+ which (language|languages) do you (speak|know) [*]
-- Currently i am communicating in english language
++ ecology
+- ecology
 
-+ i am (_|_ _|_ _ _ _|_ _ _ _ _) years old [*]
-- Tell me that again but with a number this time.
++ case
+- case
 
-+ what is your (home|office|cell|phone) number [*]
-- You can reach me at: 1 (800) 555-1234.
++ cohort
+- cohort
 
-+ how to (contact|reach) you [*]
-@ what is your home number
++ case-control
+- case-control
 
-+ i want to contact you [*]
-@ what is your home number
++ hospital
+- hospital
 
-+ what is your number [*]
-- Which number you want to know home, office and cell.
++ (uber payment|payment uber| payment)
+- uber_payment
 
-+ (home|office|cell) [number] *
-@  what is your home number
++ Try Me
+- Try Me
 
++ Thanks
+- Thanks
 
-+ who are you [*]
-- I am <bot name>, And who are you?
-- You can call me <bot name>.
-- My name is <bot name>.
++ Goodbye
+- Goodbye
 
-+ i am * [*]
-- <set userName=<formal>>ok, nice to meet you <star>
-
-+ my name is * [*]
-- <set userName=<formal>>Nice to meet you, <get userName>!
-
-+ (what is|what's) your name [*]
-@ who are you
-
-+ where (you|do you) live [*]
-- I am not from you world!
-
-+ (what|who) is *
-- I don't know what you trying to say.
-
-+ (do you|you) know *
-- Sorry, i dont't know <star2>
-
-+ say something random [*]
-- This {random}message|sentence{/random} has a random word.
-
-// this block for Takeda TryMe chatbot
-
-+ what (is|is a|is the) clinical trial [*]
-- Clinical trial is the study of health and illness in people. It is a means of developing new treatments and medications for diseases and conditions. There are strict rules for clinical trials, which are monitored nationwide by the NIH and the FDA, especially when they involve new drugs.
-
-+ [*] clinical trial [*]
-- Clinical trial is the study of health and illness in people. It is a means of developing new treatments and medications for diseases and conditions. There are strict rules for clinical trials, which are monitored nationwide by the NIH and the FDA, especially when they involve new drugs.
-
-+ (what|what's|what's the) [a] clinical trial [*]
-@ what is the clinical trial
-
-+ [*] want to know [about] [this] [clinical] trial
-@ what is the clinical trial
-
-+ [*] (beneficial|advantage|advantages|benefit|benefits|useful|benefiting|benefitting) [*]
-- You may gain access to new drugs and other treatments, sometimes years before they are widely available. You will be monitored closely for any side effects. You will have the chance to take an active role in your own healthcare. You will be making a valuable contribution to cancer research.
-
-+ [*] (eligibility criteria|eligibility|eligible|allowed to participate|participation) [*]
-- You will have guidelines spelling out who can participate. These are called eligibility criteria. The factors that allow you to participate in a clinical trial can include age, gender, the type and stage of your disease, previous treatment history, and other medical conditions.
-
-+ [*] (cost|pay|payment) [*]
-- Patients generally do not have to pay extra out-of- pocket costs for treatments studied as part of a trial. Every trial is different, but the clinical trial’s sponsor usually pays for all research-related costs and any special testing. Typically, the patient or his or her insurance company is asked to pay for any routine tests, treatments, or procedures that would be required as part of standard cancer treatment. Before you join a clinical trial, you will receive an informed consent document that spells out exactly what you’ll have to pay for and what you won’t.
-- The Clinical Center does not charge patients for participation and treatment in clinical studies at NIH. In addition, in certain emergency circumstances, you may qualify for help with travel and other expenses
-
-+ [*] (purpose of a clinical trial|purpose|use) [*]
-- The purpose of this guidance is to assist sponsors in the clinical development of drugs for the 20 treatment of diabetic and idiopathic gastroparesis
-
-+ [*] (risk|disadvantage|demerits|cons) [*]
-- A clinical trial can sometimes require more time and medical attention than normal care. This can include doctor visits, phone calls, more treatments, a hospital stay, or a more complicated treatment regimen. (Ask your doctor for information about the trial you are considering.) The treatment might not work. The treatment might cause serious side effects. Even if a new approach helps some patients, it might not help you.
-
-
-// end this block
-
-+ i am (really|very) (tired|confuse)
-- I'm sorry to hear that you are <star1> <star2>.
-
-+ i hate you
-- You're really mean! I'm not talking again until you apologize.{topic=sorry}
-
-> topic sorry
-
-  // This will match if the word "sorry" exists ANYWHERE in their message
-  + [*] sorry [*]
-  - It's OK, I'll forgive you!{topic=random}
-
-  + *
-  - Nope, not until you apologize.
-  - Say you're sorry!
-  - Apologize!
-
-< topic
-
-+ [*] (fuck|bludy) [*]
-- Please don't use this type of word in this conversation
-
-+ thanks
-- Happy to help!
-
-+ what am i old enough to do
-* <get age> == undefined => I don't know how old you are.
-* <get age> >  25 => You can do anything you want.
-* <get age> == 25 => You're old enough to rent a car with no extra fees.
-* <get age> >  21 => You're old enough to drink, but not rent a car.
-* <get age> == 21 => You're exactly old enough to drink.
-* <get age> >  18 => You're old enough to gamble, but not drink.
-* <get age> == 18 => You're exactly old enough to gamble.
-- You're not old enough to do much of anything yet.
-
-+ google *
-- Google search: <a href="http://google.com/search?q=<star>">Click Here</a>
-
-// If the user repeats the bot's previous message
-+ <reply>
-- Don't repeat what I say.
-
-// If the user keeps repeating themselves over and over.
-+ <input1>
-* <input1> == <input2> => That's the second time you've repeated yourself.
-* <input1> == <input3> => If you repeat yourself again I'll stop talking.
-* <input1> == <input4> => That's it. I'm not talking.{topic=sorry}
-- Please don't repeat yourself.
++ Greetings
+- Greetings

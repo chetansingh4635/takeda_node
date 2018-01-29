@@ -10,6 +10,9 @@ var bunyanLogger     = bunyan.createLogger({name:'tryMe', streams: [{path: 'tryM
 global.configs       = require('./configs.json');
 const fs             = require('fs');
 var multer           = require('multer');
+var log4js           = require('log4js');
+var logger           = log4js.getLogger();
+logger.level         = 'debug';
 
 /**
 * This block of code is use for to configure application level middlewares
@@ -41,7 +44,7 @@ app.use(function(req, res, next) {
 * This middleware is use for to define the error
 */
 app.use(function(err, req, res, next) {
-  console.error(err.stack);
+  logger.error(err.stack);
   res.status(401).json({error: 'Something wrong with request'});
 });
 
@@ -62,7 +65,7 @@ app.get('/unitTestReport',function(req,res){
 
 fs.readdir('unitTestReport/assets', (err, files) => {
   files.forEach(file => {
-    console.log(file);
+    logger.info(file);
     app.get('/assets/'+file,function(req,res){
         res.sendFile(__dirname +'/unitTestReport/assets/'+file);
     });
@@ -73,4 +76,4 @@ fs.readdir('unitTestReport/assets', (err, files) => {
 * Application running on given port
 */
 app.listen(configs.appPort);
-console.log('REST API is runnning at ' + configs.appPort);
+logger.info('REST API is runnning at ' + configs.appPort);

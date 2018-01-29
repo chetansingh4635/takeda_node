@@ -1,4 +1,7 @@
 var async          = require('async');
+var log4js         = require('log4js');
+var logger         = log4js.getLogger();
+logger.level       = 'debug';
 var brandingModel  = require('../models/brandingModel');
 
 /**
@@ -14,6 +17,6 @@ module.exports.getBrandingDetails = function(req, res) {
     }
   ],
   function(err, results) {
-    console.log(err);
+    logger.error(err);
   });
 };

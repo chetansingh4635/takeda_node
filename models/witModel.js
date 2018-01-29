@@ -1,4 +1,7 @@
-var async          = require('async')
+var async          = require('async');
+var log4js         = require('log4js');
+var logger         = log4js.getLogger();
+logger.level       = 'debug';
 var dbConnection   = require('./dbConnection');
 var _              = this;
 
@@ -19,7 +22,7 @@ module.exports.createLog = function(req, res, chatLogData) {
     }
   ],
   function(err, result) {
-    console.log(err);
+    logger.error(err);
   })
 };
 
@@ -50,7 +53,7 @@ function createChatLogs(req, res, chatLogData, next) {
   };
   dbConnection.query('INSERT INTO tbl_bot_logs SET ?', chatLogDetails, (err, response) => {
     if(err) {
-      console.log(err);
+      logger.error(err);
     } else {
       next(null, null)
     }
@@ -63,7 +66,7 @@ function createChatLogs(req, res, chatLogData, next) {
 function updateChatLogs(req, res, chatLogData, next) {
   dbConnection.query('UPDATE tbl_bot_logs SET wit_calls_skipped = ?, updated_on = ? WHERE chat_req = ?', [req.witCallsSkipped + 1, new Date(), chatLogData.chat_req], (err, response) => {
     if(err) {
-      console.log(err);
+      res.send(err);
     } else {
       next(null, null)
     }
@@ -77,7 +80,7 @@ module.exports.getWitResponse = function(entity, value, next) {
   var queryData = [entity,value];
   dbConnection.query('SELECT * FROM tbl_bot_reply tb LEFT JOIN tbl_bot_entities te ON te.entity_id = tb.entity_id WHERE te.entity_name = ? && tb.value= ?', queryData, (err, response) => {
     if(err) {
-      console.log(err);
+      logger.error(err);
     } else {
       next(null, response);
     }
@@ -152,9 +155,9 @@ module.exports.trailsWitLogs = function(req, res, status) {
   let query   = {request : request, host : req.headers.host, query : req.body.query, response : res.response, status:status};
   dbConnection.query('INSERT IGNORE INTO tbl_wit_trails SET ?', query, (err, response) => {
     if(err) {
-      console.log(err);
+      logger.error(err);
     } else {
-      console.log("Error logged");
+      logger.info("Error logged into database");
     }
   });
 }

@@ -1,4 +1,7 @@
 const mysql   = require('mysql');
+var log4js    = require('log4js');
+var logger    = log4js.getLogger();
+logger.level  = 'debug';
 var configs   = require('../configs.json');
 
 /**
@@ -16,9 +19,9 @@ const dbConnection = mysql.createConnection({
 */
 dbConnection.connect((err) => {
   if(err) {
-    console.log(err);
+    logger.error(err);
   } else {
-    console.log('Database Connected!');
+    logger.info('Database Connected!');
   }
 });
 

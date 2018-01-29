@@ -41,11 +41,11 @@ module.exports.chatBoatResponse = function(req, res) {
     function(queryResponse, next) {
       res.response = queryResponse.answer;
       witModel.trailsWitLogs(req, res, 'success');
-      res.status(200).send(queryResponse);
+      res.status(200).json(queryResponse);
     }
   ],
   function(err, result){
-    console.log(err);
+    logger.error(err);
   })
 }
 

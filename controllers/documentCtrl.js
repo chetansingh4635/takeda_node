@@ -1,5 +1,8 @@
 var async          = require('async');
 var _              = require('lodash');
+var log4js         = require('log4js');
+var logger         = log4js.getLogger();
+logger.level       = 'debug';
 var documentModel  = require('../models/documentModel');
 var globalServices = require('../services/globalServices');
 
@@ -22,7 +25,7 @@ module.exports.getDocumnetList = function(req, res) {
     }
   ],
   function(err, results) {
-    console.log(err);
+    logger.error(err);
   });
 };
 
@@ -50,7 +53,7 @@ module.exports.openDocDetailsHTML = function(req, res) {
     }
   ],
   function(err, results) {
-    console.log(err);
+    logger.error(err);
   });
 };
 
@@ -89,7 +92,7 @@ module.exports.getDocumentDetails = function(req, res) {
     }
   ],
   function(err, results) {
-    console.log(err);
+    logger.error(err);
   });
 };
 
