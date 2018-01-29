@@ -157,7 +157,7 @@ module.exports.trailsWitLogs = function(req, res, status) {
     if(err) {
       logger.error(err);
     } else {
-      logger.info("Error logged into database");
+      logger.info("Wit response logged into database");
     }
   });
 }
