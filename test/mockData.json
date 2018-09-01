@@ -1,0 +1,13 @@
+{
+  "validEmailId"      : "vasim.rana@mobileprogramming.net",
+  "invalidEmailId"    : "xxx@abc.com",
+  "validPassword"     : "@123welcome",
+  "invalidParams"     : "xx",
+  "invalidPassword"   : "xxxxxxxxx",
+  "validNickName"     : "vasimrana",
+  "invalidNickName"   : "xxxxxxxxx",
+  "validToken"        : "Bearer~eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaGF0Ym90TmFtZSI6IiIsImVtYWlsIjoic3VuZGVyLnRhbWFuZ0Btb2JpbGVwcm9ncmFtbWluZ2xsYy5jb20iLCJuaWNrTmFtZSI6InN1bmRlcm1hbiIsImlzQWN0aXZlIjoiRkFMU0UiLCJleHAiOjE1MTc5MDQwNDUsImlhdCI6MTUxNzgxNzY0NX0.pNx2Tw4P8JYkunqU1a887TwdDiXJL1cEHeymBheA4U0",
+  "invalidToken"      : "Bearer~yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOm51bGwsImVtYWlsIjoidmFzaW0ucmFuYUBtb2JpbGVwcm9ncmFtbWluZy5uZXQiLCJuaWNrTmFtZSI6InZhc2ltcmFuYSIsImV4cCI6MTUxMDI5MzU1NiwiaWF0IjoxNTEwMjA3MTU2fQ.rwleSjRRQswzMgeIg6ZUY_R9kFa7SpCx11OaIB9InWY",
+  "validBrandingId"   : 17,
+  "invalidBrandingId" : 2
+}

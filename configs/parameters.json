@@ -1,0 +1,163 @@
+{
+  "params" : {
+    "signup" : {
+      "title" : "User signup module parameters",
+      "fields": [
+        {
+          "name"      : "nickName",
+          "type"      : "userName",
+          "required"  : true
+        },
+        {
+          "name"      : "emailId",
+          "type"      : "email",
+          "required"  : true
+        },
+        {
+          "name"      : "password",
+          "type"      : "password",
+          "required"  : true
+        }
+      ]
+    },
+
+    "login" : {
+      "title" : "User login module parameters",
+      "fields": [
+        {
+          "name"      : "emailId",
+          "type"      : "email",
+          "required"  : true
+        }
+      ]
+    },
+
+    "forgotPassword" : {
+      "title" : "Forgot password module parameters",
+      "fields": [
+        {
+          "name"      : "emailId",
+          "type"      : "email",
+          "required"  : true
+        }
+      ]
+    },
+
+    "changePassword" : {
+      "title" : "Change password module parameters",
+      "fields": [
+        {
+          "name"      : "oldPassword",
+          "type"      : "password",
+          "required"  : true
+        },
+        {
+          "name"      : "newPassword",
+          "type"      : "password",
+          "required"  : true
+        }
+      ]
+    },
+
+    "resetPassword" : {
+      "title" : "Reset password module parameters",
+      "fields": [
+        {
+          "name"      : "emailId",
+          "type"      : "email",
+          "required"  : true
+        },
+        {
+          "name"      : "resetPassword",
+          "type"      : "password",
+          "required"  : true
+        }
+      ]
+    },
+
+    "activateTrial" : {
+      "title" : "activate clinical trial module parameters",
+      "fields": [
+        {
+          "name"      : "activationCode",
+          "type"      : "activationCode",
+          "required"  : true
+        }
+      ]
+    },
+
+    "updateUserSettings" : {
+      "title" : "User settings module parameters",
+      "fields": [
+        {
+          "name"      : "nickName",
+          "type"      : "userName",
+          "required"  : true
+        },
+        {
+          "name"      : "chatbotName",
+          "type"      : "userName",
+          "required"  : true
+        }
+      ]
+    },
+
+    "addChatbotName" : {
+      "title" : "Add chatbot name module parameters",
+      "fields": [
+        {
+          "name"      : "chatbotName",
+          "type"      : "userName",
+          "required"  : true
+        }
+      ]
+    },
+
+    "brandingDetails" : {
+      "title" : "Branding details module parameters",
+      "fields": [
+        {
+          "name"      : "branding_id",
+          "type"      : "number",
+          "required"  : true
+        },
+        {
+          "name"      : "primary_color",
+          "type"      : "colorCodeHexa",
+          "required"  : true
+        },
+        {
+          "name"      : "default_color",
+          "type"      : "colorCodeHexa",
+          "required"  : true
+        },
+        {
+          "name"      : "info_color",
+          "type"      : "colorCodeHexa",
+          "required"  : true
+        },
+        {
+          "name"      : "danger_color",
+          "type"      : "colorCodeHexa",
+          "required"  : true
+        },
+        {
+          "name"      : "warning_color",
+          "type"      : "colorCodeHexa",
+          "required"  : true
+        },
+        {
+          "name"      : "font_size",
+          "type"      : "number",
+          "required"  : true
+        },
+        {
+          "name"      : "logo",
+          "type"      : "text",
+          "required"  : true
+        }
+      ]
+    }
+
+  }
+}

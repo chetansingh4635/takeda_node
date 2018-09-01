@@ -1,0 +1,62 @@
+! version           = 2.0
+! var name          = ChatBot
+
++ (benefits overview|overview benefits)
+- benefits
+
++ (purpose overview|overview purpose)
+- purpose
+
++ (eligibility overview|overview eligibility)
+- eligibility
+
++ (risks overview|overview risks)
+- risks
+
++ (payment overview|overview payment)
+- payment
+
++ (quit overview|overview quit)
+- quit
+
++ placebo
+- placebo
+
++ overview
+- overview
+
++ ecology
+- ecology
+
++ case
+- case
+
++ cohort
+- cohort
+
++ case-control
+- case-control
+
++ hospital
+- hospital
+
++ (uber payment|payment uber| payment)
+- uber_payment
+
++ try me
+- try me
+
++ thanks
+- thanks
+
++ goodbye
+- goodbye
+
++ greetings
+- greetings
+
++ [*] children [*]
+- children
+
++ (overview phase|phase overview)
+- phase
